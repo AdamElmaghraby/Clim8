@@ -7,6 +7,13 @@ const WeatherDashboard = () => {
   const { coordinates, error, getLocation, isLoading } = useGeolocation();
   console.log(coordinates);
 
+  const handleRefresh = () => {
+    getLocation();
+    if (coordinates) {
+      // reload weathjer data
+    }
+  };
+
   return (
     <div className="space-y-4">
       {/* Favorite Cities */}
