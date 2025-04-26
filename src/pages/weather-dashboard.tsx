@@ -41,6 +41,24 @@ const WeatherDashboard = () => {
     );
   }
 
+  if (!coordinates) {
+    return (
+      <Alert variant="destructive" className="bg-transparent">
+        <AlertTitle>Location Required</AlertTitle>
+        <AlertDescription className="flex flex-col gap-4">
+          <p>
+            We need your location to show the weather in your area. Please
+            enable location access to continue.
+          </p>
+          <Button onClick={getLocation} variant="destructive" className="w-fit">
+            <MapPin className="mr-2 h-4 w-4" />
+            Enable Location
+          </Button>
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
   return (
     <div className="space-y-4">
       {/* Favorite Cities */}
