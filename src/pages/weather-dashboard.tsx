@@ -1,3 +1,5 @@
+import { WeatherData } from "@/api/types";
+import CurrentWeather from "@/components/current-weather";
 import WeatherSkeleton from "@/components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -8,7 +10,6 @@ import {
   useWeatherQuery,
 } from "@/hooks/use-weather";
 import { AlertCircle, MapPin, RefreshCcw, RefreshCw } from "lucide-react";
-import React from "react";
 
 const WeatherDashboard = () => {
   const {
@@ -18,7 +19,7 @@ const WeatherDashboard = () => {
     isLoading: locationLoading,
   } = useGeolocation();
 
-  const weatherQuery = useReverseGeocodeQuery(coordinates);
+  const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
   const locationQuery = useReverseGeocodeQuery(coordinates);
 
@@ -106,10 +107,28 @@ const WeatherDashboard = () => {
           onClick={handleRefresh}
           disabled={weatherQuery.isFetching || forecastQuery.isFetching}
         >
-          <RefreshCcw className={`h-4 w-4 ${weatherQuery.isFetching?"animate-spin" : ""}`}></RefreshCcw>
+          <RefreshCcw
+            className={`h-4 w-4 ${
+              weatherQuery.isFetching ? "animate-spin" : ""
+            }`}
+          ></RefreshCcw>
         </Button>
       </div>
-      {/* Current Weather */}
+
+      <div className="grid gap-6">
+        <div>
+          <CurrentWeather
+            data={weatherQuery.data as WeatherData}
+            locationName={locationName}
+          />
+          {/* current weather */}
+          {/* hourly temp */}
+        </div>
+        <div>
+          {/* details */}
+          {/* forecast */}
+        </div>
+      </div>
     </div>
   );
 };
