@@ -58,7 +58,7 @@ const WeatherDetails = ({ data }: WeatherDetailsProps) => {
           {details.map((detail) => {
             return (
               <div key={detail.title} className="flex items-center gap-3 rounded-lg border p-4">
-                <detail.icon className={`h-5 w-5 ${detail.color}`} />
+                <detail.icon className="h-5 w-5 text-blue-500" />
                 <div>
                     <p className="text-sm font-medium leading-none">{detail.title}</p>
                     <p className="text-sm text-muted-foreground">{detail.value}</p>
