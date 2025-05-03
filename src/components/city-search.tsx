@@ -37,7 +37,7 @@ const CitySearch = () => {
 
     setOpen(false);
 
-    navigate(`/city/${name}??lat=${lat}&lon=${lon}`);
+    navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
   };
 
   return (
@@ -61,7 +61,7 @@ const CitySearch = () => {
           {query.length > 2 && !isLoading && (
             <CommandEmpty>No cities found.</CommandEmpty>
           )}
-            {/* <CommandGroup heading="Favorites">
+          {/* <CommandGroup heading="Favorites">
             <CommandItem>Calendar</CommandItem>
             </CommandGroup> */}
           {history.length > 0 && (
